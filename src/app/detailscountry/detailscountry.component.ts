@@ -1,14 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { Country } from '../country';
-import { JsonPipe } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-detailscountry',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './detailscountry.component.html',
   styleUrl: './detailscountry.component.css'
 })
 export class DetailscountryComponent {
+[x: string]: any;
   @Input() country = new Country();
   @Input() name="";
   @Input() area=0;

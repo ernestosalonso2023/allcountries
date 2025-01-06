@@ -28,6 +28,12 @@ export class Country {
          svg:"",
          alt:""
     }
+    continents:string[]=[];
+    coatOfArms= {
+        png:"",
+        svg:"",
+    }
+    borders:string[]=[];
 }
  /*export class Name {
      common:string="";
