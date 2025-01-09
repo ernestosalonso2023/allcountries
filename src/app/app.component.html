@@ -97,11 +97,18 @@
     </div>
   </div>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      <app-cardcountry  *ngFor="let c of countries; let i=index"  [name]="c.name.common" [capital]="c.capital[0]" [population]="c.population" [area]="c.area" [flagsvg]="c.flags.svg" (resultado)="captaResultado($event)">
+      <app-cardcountry  *ngFor="let c of countries; let i=index"  [name]="c.name.common" [capital]="c.capital[0]" [population]="c.population" [area]="c.area" [flagsvg]="c.flags.svg" (resultado)="captaResultado($event)" (details)="showCountryDetails($event)">
       </app-cardcountry>
    </div>
 </div>
-<div class="container" *ngIf="!viewlist">
+<div class="container" *ngIf="(details && !loaded)">
+  <div  class="d-flex justify-content-center">Loading details...</div>
+  <div  class="d-flex justify-content-center">
+       <div class="spinner-border" role="status">
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="details && loaded">
   <app-detailscountry [country]="resultadoP"></app-detailscountry> 
 </div>
 </div>

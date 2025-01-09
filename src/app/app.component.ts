@@ -15,14 +15,26 @@ import { DetailscountryComponent } from './detailscountry/detailscountry.compone
 export class AppComponent {
   title = 'allcountries';
   viewlist = true;
+  loaded=false;
+  details=false;
   resultadoP = new Country();
   progress=0;
   countries: Country[] | null = [];
   // countryname="";
   constructor(private http: HttpClient) { }
 
-  captaResultado(event: any) { this.resultadoP = event; this.viewlist = false; /*alert(this.resultadoP.name.common)*/ }
-
+  captaResultado(event: any) {
+     this.resultadoP = event; 
+     this.viewlist = false; 
+     this.loaded=true;
+     /*alert(this.resultadoP.name.co mmon)*/ 
+     
+    }
+    showCountryDetails(even:any){
+      //alert("view details")
+      //this.loaded=
+      this.details=even;
+    }
   ngOnInit() {
     this.getAllCountry();
   }
