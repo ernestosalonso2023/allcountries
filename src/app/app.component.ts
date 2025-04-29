@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CardcountryComponent } from "./cardcountry/cardcountry.component";
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpEventType, HttpRequest, HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpHeaders, HttpRequest, HttpStatusCode } from '@angular/common/http';
 import { Country } from './country';
 import { DetailscountryComponent } from './detailscountry/detailscountry.component';
 import { FormsModule } from '@angular/forms';
@@ -42,8 +42,10 @@ export class AppComponent {
     this.getAllCountry();
   }
   getAllCountry() {
+    Headers
+    const cors=new HttpHeaders({name:["Access-Control-Allow-Origin" , "Access-Control-Allow-Methods", "Access-Control-Allow-Headers"]});
     const req = new HttpRequest("GET", "https://restcountries.com/v3.1/all/?fields=name,capital,population,area,flags",
-      { reportProgress: true, responseType: "json", }
+      { headers:cors,reportProgress: true, responseType: "json", }
     );
     this.http.request<Country[]>(req).subscribe(event => {
       if (event.type === HttpEventType.DownloadProgress) {
