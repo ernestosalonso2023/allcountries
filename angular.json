@@ -39,10 +39,7 @@
             ]
           },
           "configurations": {
-            "en": {
-               "localize":["en"]
-             },
-             "es": {
+              "es": {
               "localize":["es"]
              },
             "production": {
