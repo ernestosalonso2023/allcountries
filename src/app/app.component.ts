@@ -15,11 +15,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
   //nombre="Ernesto";
- // entrada="mmm";
+  entrada="";
   title = 'allcountries';
   viewlist = true;
   loaded=false;
   details=false;
+  search=false;
   resultadoP = new Country();
   progress=0;
   countries: Country[] | null = [];
@@ -29,6 +30,7 @@ export class AppComponent {
   captaResultado(event: any) {
      this.resultadoP = event; 
      this.viewlist = false; 
+     this.search=false;
      this.loaded=true;
      /*alert(this.resultadoP.name.co mmon)*/ 
      
@@ -37,6 +39,7 @@ export class AppComponent {
       //alert("view details")
       //this.loaded=
       this.details=even;
+      //this.search=false;
     }
   ngOnInit() {
     this.getAllCountry();
@@ -67,8 +70,26 @@ export class AppComponent {
         //console.log(this.countries);
       });*/
   }
-  Buscando(){
-    //alert(this.entrada);
-    //this.nombre=this.entrada;
+  getCountryByName(name:string):Country|null{
+    var found=false;
+    var i=0; 
+    var country: Country=new Country();
+    if (this.countries!=null){
+      while (!found && i<this.countries.length){
+       if (this.countries[i].name.common.toUpperCase()==name.toUpperCase()) {
+        found=true;
+        country=this.countries[i];
+      } else {
+        i++;
+       }
+    } 
   }
+  if (found) { this.resultadoP=country; 
+              this.search=true; 
+              this.viewlist=false;
+              this.details=false;
+              return country 
+            }  else
+             return null;
+}
 }

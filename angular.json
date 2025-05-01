@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "allcountries": {
+      "i18n": {
+        "sourceLocale": "es",
+        "locales": {
+          "en":"src/locale/message_es.xlf"
+          }  
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,11 +19,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "localize":true,
+            "aot": true,
             "outputPath": "docs/allcountries",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -36,6 +45,12 @@
             ]
           },
           "configurations": {
+            "en": {
+               "localize":["en"]
+             },
+             "es": {
+              "localize":["es"]
+             },
             "production": {
               "budgets": [
                 {
@@ -79,7 +94,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [

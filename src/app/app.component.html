@@ -41,7 +41,7 @@
       <p class="text-body-secondary">En este proyecto utilizamos angular y la API RESTful, de código abierto y de uso gratuito disponible en <a href="https://restcountries.com/">https://restcountries.com/</a></p>
     </div>
     <div class="col-sm-4 offset-md-1 py-4">
-      <h4>Contact me</h4>
+      <h4>Contacto</h4>
       <ul class="list-unstyled">
         <li>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
@@ -54,16 +54,17 @@
           <path d="M10 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM6 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
           <path d="M8 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2M1.599 4.058a.5.5 0 0 1 .208.676A7 7 0 0 0 1 8c0 1.18.292 2.292.807 3.266a.5.5 0 0 1-.884.468A8 8 0 0 1 0 8c0-1.347.334-2.619.923-3.734a.5.5 0 0 1 .676-.208m12.802 0a.5.5 0 0 1 .676.208A8 8 0 0 1 16 8a8 8 0 0 1-.923 3.734.5.5 0 0 1-.884-.468A7 7 0 0 0 15 8c0-1.18-.292-2.292-.807-3.266a.5.5 0 0 1 .208-.676M3.057 5.534a.5.5 0 0 1 .284.648A5 5 0 0 0 3 8c0 .642.12 1.255.34 1.818a.5.5 0 1 1-.93.364A6 6 0 0 1 2 8c0-.769.145-1.505.41-2.182a.5.5 0 0 1 .647-.284m9.886 0a.5.5 0 0 1 .648.284C13.855 6.495 14 7.231 14 8s-.145 1.505-.41 2.182a.5.5 0 0 1-.93-.364C12.88 9.255 13 8.642 13 8s-.12-1.255-.34-1.818a.5.5 0 0 1 .283-.648"/>
         </svg>&nbsp;
-        <a href="https://wa.me/5354284391" class="text-white">call me</a></li>
+        <a href="https://wa.me/+34667888622" class="text-white">WhatsApp</a></li>
         </ul>
     </div>
   </div>
 </div>
 </div>
 <div class="navbar navbar-dark bg-dark shadow-sm">
+<
 <div class="container">
   <a href="#" class="navbar-brand d-flex align-items-center">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map" viewBox="0 0 16 16">
+     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/>
     </svg>&nbsp;
    <strong>All countries</strong>
@@ -78,12 +79,15 @@
 
 <section class="py-2 text-center container">
 <div class="row py-lg-2">
+  <div class="col-lg-6 col-md-2 mx-auto">
+    <a href="" *ngIf="!viewlist">&lt;&lt;Atrás</a>
+  </div>
+  
   <div class="col-lg-6 col-md-8 mx-auto">
-    
-  <!-- <form class="d-flex" role="search">-->
+   <!-- <form class="d-flex" role="search">-->
       <div class="d-flex">
-        <input  class="form-control me-2"  type="search" placeholder="Search any country" aria-label="Search">
-      <button class="btn btn-primary" type="submit"> Search </button>
+      <input  [(ngModel)]="entrada"   (keyup.enter)="getCountryByName(entrada)" class="form-control me-2"  type="search" placeholder="Buscar cualquier país" aria-label="Search">
+      <button class="btn btn-primary" type="submit" (click)="getCountryByName(entrada)"> Buscar </button>
       </div>
       
    <!-- </form>-->
@@ -102,6 +106,15 @@
   </div>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <app-cardcountry  *ngFor="let c of countries; let i=index"  [name]="c.name.common" [capital]="c.capital[0]" [population]="c.population" [area]="c.area" [flagsvg]="c.flags.svg" (resultado)="captaResultado($event)" (details)="showCountryDetails($event)">
+      </app-cardcountry>
+   </div>
+</div>
+<div class="container" *ngIf="search" >
+  <!--<div class="progress" role="progressbar" aria-label="Example 1px high" [attr.aria-valuenow]="progress" aria-valuemin="0" aria-valuemax="100" style="height: 2px">
+    <div class="progress-bar" [style.width]="progress+'%'"></div>
+  </div>-->
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <app-cardcountry    [name]="resultadoP.name.common" [capital]="resultadoP.capital[0]" [population]="resultadoP.population" [area]="resultadoP.area" [flagsvg]="resultadoP.flags.svg" (resultado)="captaResultado($event)" (details)="showCountryDetails($event)">
       </app-cardcountry>
    </div>
 </div>
@@ -125,7 +138,7 @@
   <a href="#">Regresar arriba</a>
 </p>
 <p class="mb-1">Esta aplicaci&oacute;n le ayudar&aacute; a encontrar datos relevantes de los pa&iacute;ses</p>
-<p class="mb-0">si le ha resultado interesante y desea conocer sobre m&iacute; <a href="/">visitame en github</a>  <a href="https://github.com/ernestosalonso2023"></a>.</p>
+<p class="mb-0">si le ha resultado interesante y desea conocer sobre m&iacute; <a href="https://github.com/ernestosalonso2023" target="_blank">visitame en github</a> </p>
 </div>
 </footer>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
