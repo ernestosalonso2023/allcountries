@@ -4,12 +4,6 @@
   "newProjectRoot": "projects",
   "projects": {
     "allcountries": {
-      "i18n": {
-        "sourceLocale": "es",
-        "locales": {
-          "en":"src/locale/message_es.xlf"
-          }  
-      },
       "projectType": "application",
       "schematics": {},
       "root": "",
