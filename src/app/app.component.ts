@@ -90,6 +90,7 @@ export class AppComponent {
               this.details=false;
               return country 
             }  else
-             return null;
+            { alert("No hemos encontrado un país con ese nombre");
+               return  null;}
 }
 }
